@@ -5,5 +5,5 @@
 TODAY_DATE="09JUNE2023"
 #echo "Good morning today date is $TODAY_DATE"
 
-var=$(date + %F)
+var=$(date +%F)
 echo "Good morning today date is $var"
