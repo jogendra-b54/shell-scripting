@@ -18,3 +18,6 @@ echo "the exist code of this script is: $? "
 echo "the total number of arguments is: $# "
 echo "the PID of the script is : $$"
 echo "it will display all the arguemnts  $@ "
+
+
+echo "it will display all the arguemnts  $a "
