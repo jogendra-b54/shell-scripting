@@ -7,6 +7,8 @@ sample()
     echo "I am a sample function with sample name "
     echo "I am executing the sample function"
     echo "sample function is completed"
+    echo "calling status function"
+    status
 
 }
 
@@ -24,4 +26,4 @@ status()
     #this is how you can call a function
 
 sample
-status
+#status
