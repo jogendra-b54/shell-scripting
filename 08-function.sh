@@ -11,3 +11,5 @@ sample()
 }
 
 #this is how you can call a function
+
+sample
