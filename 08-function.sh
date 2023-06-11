@@ -22,6 +22,8 @@ status()
 
     NO_OF_SESSION=$(who | wc -l)
     echo -e "NUmber of session opened :\e[32m $NO_OF_SESSION \e[0m"
+
+    echo "the load avarage of the system from last 1 minute : $(uptime | awk -F , '{print $3}' | awk -F : '{print $2}')"
 }
     #this is how you can call a function
 
