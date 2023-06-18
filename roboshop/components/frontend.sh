@@ -21,7 +21,7 @@ stat() {
 
 echo -n "Installing Nginx :"
 
-yum install nginx -y &>> LOGFILE
+yum install nginx -y &>> $LOGFILE
 
 stat $?
 
@@ -31,7 +31,7 @@ curl -s -L -o /tmp/${COMPONENT}..zip "https://github.com/stans-robot-project/${C
 stat $?
 echo -n "Performing cleanup"
 cd /usr/share/nginx/html
-rm -rf * &>>  LOGFILE
+rm -rf * &>>  $LOGFILE
 
 stat $?
 
@@ -46,9 +46,9 @@ stat $?
 # mv localhost.conf /etc/nginx/default.d/roboshop.conf
 
 echo -n "Extracting ${COMPONENT} component :"
-unzip /tmp/${COMPONENT}.zip &>> LOGFILE
+unzip /tmp/${COMPONENT}.zip &>> $LOGFILE
 mv $COMPONENT-main/* .
-mv static/* .  &>> LOGFILE
+mv static/* .  &>> $LOGFILE
 rm -rf ${COMPONENT}-main README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
