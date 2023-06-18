@@ -16,4 +16,4 @@ case $ACTION in
         echo "Possible values are start or stop or restart only"
         ;;  
 
-ease 
+easc
