@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ID=$(id -u)
-if [$ID -ne 0 ]; then
+if [ $ID -ne 0 ] ; then
     echo -e "\e[31m This script is executed to be run by a root user or with sudo previlage"
     exit 1
 fi
@@ -24,4 +24,3 @@ yum install nginx -y
 # ```
 
 # Let's download the HTDOCS content and deploy it under the Nginx path.
-
