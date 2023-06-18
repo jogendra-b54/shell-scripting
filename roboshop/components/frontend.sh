@@ -46,8 +46,8 @@ stat $?
 # mv localhost.conf /etc/nginx/default.d/roboshop.conf
 
 echo -n "Extracting ${COMPONENT} component :"
-unzip /tmp/${COMPONENT}.zip &>> $LOGFILE
-mv $COMPONENT-main/* .
+unzip /tmp/${COMPONENT}.zip  &>> $LOGFILE
+mv $COMPONENT-main/*  .
 mv static/* .  &>> $LOGFILE
 rm -rf ${COMPONENT}-main README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
