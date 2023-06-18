@@ -10,7 +10,7 @@ case $ACTION in
         echo -e "\e[31mstopping rabbitMQ services\e[0m"
         ;;
         restart) 
-        echo "\e[33m Restarting rabbitMQ services\e[0m"
+        echo -e "\e[33m Restarting rabbitMQ services\e[0m"
         ;;
         *)
         echo -e "\e[35m Possible values are start or stop or restart only\e[0m"
