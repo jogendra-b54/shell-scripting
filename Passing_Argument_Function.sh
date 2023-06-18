@@ -17,4 +17,5 @@ function two() {
 }
 
 # Call the function "two"
-two one 3
+two 5 3
+one
