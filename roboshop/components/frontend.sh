@@ -10,7 +10,7 @@ fi
 
 echo "Installing Nginx :"
 
-yum install nginx -y &>> "/tmp/${COMPONENT}.log"
+yum install nginxsdsds -y &>> "/tmp/${COMPONENT}.log"
 
 if [ $? -eq 0 ] ; then
     echo -e "\e[32m success \e[0m"
