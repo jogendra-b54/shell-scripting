@@ -10,13 +10,23 @@ fi
 
 echo "Installing Nginx :"
 
-yum install nginxsdsds -y &>> "/tmp/${COMPONENT}.log"
+yum install nginx -y &>> "/tmp/${COMPONENT}.log"
 
 if [ $? -eq 0 ] ; then
     echo -e "\e[32m success \e[0m"
 else
-    echo -e "\e[31m Failed  \e[0m"
+    echo -e "\e[31m Failure  \e[0m"
 fi
+
+echo -n "Downloading the Frontend components :"
+curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
+
+if [ $? -eq 0 ] ; then
+    echo -e "\e[32m successfully downloaded \e[0m"
+else
+    echo -e "\e[31m Download Failure  \e[0m"
+fi
+
 # if the script is executed as root user or sudo user . then it has to proceed
 # if not that mean when script runs as normal user , it should display a nice  message
 # The frontend is the service in RobotShop to serve the web content over Nginx.
