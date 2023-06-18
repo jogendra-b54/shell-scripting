@@ -7,13 +7,13 @@ case $ACTION in
         echo -e "\e[32m strating rabbitMQ services\e[0m"
         ;;
         stop)
-        echo "stopping rabbitMQ services"
+        echo -e "\e[31mstopping rabbitMQ services\e[0m"
         ;;
         restart) 
-        echo "Restarting rabbitMQ services"
+        echo "\e[33m Restarting rabbitMQ services\e[0m"
         ;;
         *)
-        echo "Possible values are start or stop or restart only"
+        echo "\e[35mPossible values are start or stop or restart only\e[0m"
         ;;  
 
 esac
