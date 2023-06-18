@@ -9,7 +9,8 @@ function x()
 function Around()
 {
     echo "before"
-    eval $1
+   # eval $1
+   var=$($1) # instead of using 'eval' we can use this way
     echo "after"
 }
 
