@@ -13,4 +13,4 @@ function Around()
     echo "after"
 }
 
-around x
+Around x
