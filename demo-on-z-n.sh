@@ -2,7 +2,7 @@
 
 a=10
 
-if [ z "$a" ]; then
+if [ -z "$a" ]; then
     echo "value  a is declared"
 else
     echo "value a is not declared"
