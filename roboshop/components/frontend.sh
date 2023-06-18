@@ -12,6 +12,11 @@ echo "Installing Nginx :"
 
 yum install nginx -y &>> "/tmp/${COMPONENT}.log"
 
+if [ $? -eq 0 ] ; then
+    echo -e "\e[32m success \e[0m"
+else
+    echo -e "\e[31m Failed  \e[0m"
+fi
 # if the script is executed as root user or sudo user . then it has to proceed
 # if not that mean when script runs as normal user , it should display a nice  message
 # The frontend is the service in RobotShop to serve the web content over Nginx.
