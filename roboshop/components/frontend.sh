@@ -1,41 +1,42 @@
 #!/bin/bash
 
 COMPONENT=frontend
+LOGFILE="/tmp/${COMPONENT}.log"
 
 ID=$(id -u)
-if [ $ID -ne 0 ] ; then
+if [ $ID -ne 0 ]; then
     echo -e "\e[31m This script is executed to be run by a root user or with sudo previlage \e[0m"
     exit 1
 fi
 
+stat() {
+    if [ $1 -eq 0 ]; then
+        echo -e "\e[32m success \e[0m"
+    else
+        echo -e "\e[31m Failure  \e[0m"
+        exit 2
+    fi
+
+}
+
 echo -n "Installing Nginx :"
 
-yum install nginx -y &>> "/tmp/${COMPONENT}.log"
+yum install nginx -y &>> LOGFILE
 
-if [ $? -eq 0 ] ; then
-    echo -e "\e[32m success \e[0m"
-else
-    echo -e "\e[31m Failure  \e[0m"
-fi
+stat $?
 
-echo -n "Downloading the Frontend components :"
-curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
+echo -n "Downloading the ${COMPONENT}.components :"
+curl -s -L -o /tmp/${COMPONENT}..zip "https://github.com/stans-robot-project/${COMPONENT}./archive/main.zip"
 
-if [ $? -eq 0 ] ; then
-    echo -e "\e[32m successfully downloaded \e[0m"
-else
-    echo -e "\e[31m Download Failure  \e[0m"
-fi
-
+stat $?
 echo -n "Performing cleanup"
 cd /usr/share/nginx/html
-rm -rf *  &>> "/tmp/${COMPONENT}.log"
+rm -rf * &>>  LOGFILE
 
-if [ $? -eq 0 ] ; then
-    echo -e "\e[32m successful \e[0m"
-else
-    echo -e "\e[31m Failure  \e[0m"
-fi
+stat $?
+
+
+
 # cd /usr/share/nginx/html
 # rm -rf *
 # unzip /tmp/frontend.zip
@@ -44,19 +45,9 @@ fi
 # rm -rf frontend-main README.md
 # mv localhost.conf /etc/nginx/default.d/roboshop.conf
 
-
-
-# if the script is executed as root user or sudo user . then it has to proceed
-# if not that mean when script runs as normal user , it should display a nice  message
-# The frontend is the service in RobotShop to serve the web content over Nginx.
-
-# Install Nginx.
-
-# ```
-# # yum install nginx -y
-# # systemctl enable nginx
-# # systemctl start nginx
-
-# ```
-
-# Let's download the HTDOCS content and deploy it under the Nginx path.
+echo -n "Extracting ${COMPONENT} component :"
+unzip /tmp/${COMPONENT}.zip &>> LOGFILE
+mv static/* .  &>> LOGFILE
+rm -rf ${COMPONENT}-main README.md
+mv localhost.conf /etc/nginx/default.d/roboshop.conf
+stat $?
