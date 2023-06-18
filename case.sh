@@ -4,7 +4,7 @@ ACTION=$1
 
 case $ACTION in 
     start)
-        echo "strating rabbitMQ services"
+        echo -e "\e[32m strating rabbitMQ services\e[0m"
         ;;
         stop)
         echo "stopping rabbitMQ services"
