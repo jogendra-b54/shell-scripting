@@ -27,6 +27,25 @@ else
     echo -e "\e[31m Download Failure  \e[0m"
 fi
 
+echo -n "Performing cleanup"
+cd /usr/share/nginx/html
+rm -rf *  &>> "/tmp/${COMPONENT}.log"
+
+if [ $? -eq 0 ] ; then
+    echo -e "\e[32m successful \e[0m"
+else
+    echo -e "\e[31m Failure  \e[0m"
+fi
+# cd /usr/share/nginx/html
+# rm -rf *
+# unzip /tmp/frontend.zip
+# mv frontend-main/* .
+# mv static/* .
+# rm -rf frontend-main README.md
+# mv localhost.conf /etc/nginx/default.d/roboshop.conf
+
+
+
 # if the script is executed as root user or sudo user . then it has to proceed
 # if not that mean when script runs as normal user , it should display a nice  message
 # The frontend is the service in RobotShop to serve the web content over Nginx.
