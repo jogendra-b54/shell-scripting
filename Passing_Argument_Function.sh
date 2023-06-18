@@ -2,8 +2,8 @@
 
 function one() {
     # Print the result to stdout
-    #echo "$1"
-    echo "Hello"
+    echo "$1"
+    #echo "Hello"
 }
 function two() {
     local one=$1
