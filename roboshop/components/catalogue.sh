@@ -56,7 +56,7 @@ stat $?
 
 echo -n "Copying the $COMPONENT to $APPUSER home directory : "
 cd /home/${APPUSER}/
-unzip -o /tmp/${COMPONENT}.zip  &>> $LOGFILE
+unzip -o /tmp/catalogue.zip  &>> $LOGFILE
 stat $?
 
 echo -n "Modifying the ownership  : "
