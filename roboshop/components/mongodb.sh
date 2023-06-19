@@ -45,3 +45,27 @@ systemctl daemon-reload mongod &>>$LOGFILE
 systemctl enable mongod mongod &>>$LOGFILE
 systemctl restart mongod mongod &>>$LOGFILE
 stat $?
+
+
+#Download the schema and inject it.
+# curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
+
+# cd /tmp
+# unzip mongodb.zip
+# cd mongodb-main
+# mongo < catalogue.js
+# mongo < users.js
+
+echo -n " Downloading the $COMPONENT schema : "
+curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
+stat $?
+
+echo -n "Extracting the $COMPONENT Schema : "
+cd /tmp
+unzip mongodb.zip  &>>$LOGFILE
+
+echo -n " Injecting the $COMPONENT schema : "
+cd $COMPONENT-main
+mongo < catalogue.js
+mongo < users.js
+stat $?
