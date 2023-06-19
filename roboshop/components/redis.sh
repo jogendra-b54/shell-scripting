@@ -19,8 +19,11 @@ yum install ${COMPONENT}-6.2.11 -y   &>>$LOGFILE
 stat $?
 
 #Update the BindIP from 127.0.0.1 to 0.0.0.0 in config file /etc/redis.conf & /etc/redis/redis.conf
+# vim /etc/redis.conf
+# vim /etc/redis/redis.conf
 echo -n "Enabling the DB visibilty : "
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/${COMPONENT}.conf
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/${COMPONENT}/${COMPONENT}.conf
 stat $?
 
 
