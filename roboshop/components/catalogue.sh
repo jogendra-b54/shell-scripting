@@ -41,3 +41,4 @@ useradd $APPUSER  &>> $LOGFILE
 else
 echo -n "$APPUSER service Account already exist: "
 stat $?
+fi
