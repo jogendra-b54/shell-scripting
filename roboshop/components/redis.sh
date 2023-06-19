@@ -11,7 +11,7 @@ echo -e "********************* \e[35m $COMPONENT Installation is Started   \e[0m
 # yum install redis-6.2.11 -y
 
 echo -n "Configuring the $COMPONENT repo : "
-curl -L https://raw.githubusercontent.com/stans-robot-project/redis/main/redis.repo -o /etc/yum.repos.d/redis.repo 
+curl -s -L https://raw.githubusercontent.com/stans-robot-project/redis/main/redis.repo -o /etc/yum.repos.d/redis.repo 
 stat $?
 
 echo -n "Installing  $COMPONENT  : "
