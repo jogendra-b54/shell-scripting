@@ -1,6 +1,6 @@
 #!/bin/bash
 
-COMPONENT=catalouge
+COMPONENT="catalouge"
 LOGFILE="/tmp/${COMPONENT}.log"
 APPUSER="roboshop"
 
@@ -60,6 +60,6 @@ unzip -o /tmp/catalogue.zip  &>> $LOGFILE
 stat $?
 
 echo -n "Modifying the ownership  : "
-mv $COMPONENT-main/  $COMPONENT
+mv $COMPONENT-main/ $COMPONENT
 chown -R $APPUSER:$APPUSER /home/roboshop/$COMPONENT/
 stat $?
