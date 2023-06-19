@@ -37,6 +37,12 @@ echo -n " Installing  $COMPONENT  : "
 yum install -y $COMPONENT-org  &>>$LOGFILE
 stat $?
 
+
+echo -n "Enabling the DB visibilty : "
+sed -i -e 's/127.0.0.1/0.0.0.0/' mongod.conf
+stat $?
+
+
 echo -n "Starting $COMPONENT : "
 systemctl enable mongod &>>$LOGFILE
 systemctl start mongod &>>$LOGFILE
