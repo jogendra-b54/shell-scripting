@@ -24,7 +24,6 @@ stat() {
 #```bash
 # curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo
 
-
 #1. Install Mongo & Start Service.
 # yum install -y mongodb-org
 # systemctl enable mongod
@@ -34,16 +33,15 @@ curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans
 stat $?
 
 echo -n " Installing  $COMPONENT  : "
-yum install -y $COMPONENT-org  &>>$LOGFILE
+yum install -y $COMPONENT-org &>>$LOGFILE
 stat $?
-
 
 echo -n "Enabling the DB visibilty : "
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 stat $?
 
-
 echo -n "Starting $COMPONENT : "
-systemctl enable mongod &>>$LOGFILE
-systemctl start mongod &>>$LOGFILE
+systemctl daemon-reload mongod &>>$LOGFILE
+systemctl enable mongod mongod &>>$LOGFILE
+systemctl restart mongod mongod &>>$LOGFILE
 stat $?
