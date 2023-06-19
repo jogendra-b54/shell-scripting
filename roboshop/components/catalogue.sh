@@ -36,4 +36,4 @@ stat $?
 
 echo -n "Creating the service Account : "
 useradd roboshop
-stat$?
+stat $?
