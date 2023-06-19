@@ -38,6 +38,6 @@ id $APPUSER &>> $LOGFILE
 if [ $? -ne 0 ] ; then
 echo -n "Creating the service Account : "
 useradd $APPUSER  &>> $LOGFILE
-stat $?
 else
 echo -n "$APPUSER service Account already exist: "
+stat $?
