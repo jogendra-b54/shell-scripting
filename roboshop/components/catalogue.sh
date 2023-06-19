@@ -50,7 +50,7 @@ fi
 # $ mv catalogue-main catalogue
 # $ cd /home/roboshop/catalogue
 # $ npm install
-echo -n "\nDownloading the $COMPONENT component : "
+echo -e "\nDownloading the $COMPONENT component : "
 curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip"
 stat $?
 
