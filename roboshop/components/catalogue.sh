@@ -2,6 +2,7 @@
 
 COMPONENT=catalouge
 LOGFILE="/tmp/${COMPONENT}.log"
+APPUSER="roboshop"
 
 ID=$(id -u)
 if [ $ID -ne 0 ]; then
@@ -33,7 +34,9 @@ echo -n "Installation NodeJS Started : "
 yum install nodejs -y   &>> $LOGFILE
 stat $?
 
-
+id $APPUSER
+if [ $? -ne 0 ] ; then
 echo -n "Creating the service Account : "
-useradd roboshop
+useradd $APPUSER
 stat $?
+fi
