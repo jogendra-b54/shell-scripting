@@ -29,7 +29,7 @@ stat() {
 # systemctl enable mongod
 # systemctl start mongod
 
-echo -e "********************* \e[31m $COMPONENT Installation is Started   \e[0m ********************* : "
+echo -e "********************* \e[35m $COMPONENT Installation is Started   \e[0m ********************* : "
 
 echo -n "Configuring the $COMPONENT repo : "
 curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo
@@ -75,4 +75,4 @@ mongo <users.js &>>$LOGFILE
 stat $?
 
 
-echo -e "********************* \e[31m $COMPONENT Installation is completed  \e[0m ********************* : "
+echo -e "********************* \e[32m $COMPONENT Installation is completed  \e[0m ********************* : "
