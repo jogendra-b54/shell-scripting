@@ -53,5 +53,5 @@ stat $?
 
 echo -n "Starting $COMPONENT service : "
 systemctl enable nginx
-systemctl start nginx
+systemctl restart nginx
 stat $?
