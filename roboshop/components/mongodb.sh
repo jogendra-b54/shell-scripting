@@ -75,4 +75,4 @@ mongo <users.js &>>$LOGFILE
 stat $?
 
 
-echo -e "********************* \e[32m $COMPONENT Installation is completed  \e[0m ********************* : "
+echo -e "********************* \e[34m $COMPONENT Installation is completed  \e[0m ********************* : "
