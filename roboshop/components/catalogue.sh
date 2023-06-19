@@ -70,3 +70,18 @@ echo -n "Generating npm $COMPONENT artifact  : "
 cd /home/${APPUSER}/${COMPONENT}
 npm install   &>> $LOGFILE
 stat $?
+
+echo -n "Updating the $COMPONENT systemd file   : "
+sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal' /home/${APPUSER}/${COMPONENT}/systemd.service
+mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+stat $?
+
+echo -n "Starting the ${COMPONENT} service : "
+systemctl daemon-reload      &>> $LOGFILE
+systemctl enable $COMPONENT  &>> $LOGFILE
+systemctl restart $COMPONENT  &>> $LOGFILE
+stat $?
+
+
+
+echo -e "********************* \e[34m $COMPONENT Installation is completed  \e[0m ********************* : "
