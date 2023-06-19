@@ -50,7 +50,7 @@ unzip /tmp/${COMPONENT}.zip  &>> $LOGFILE
 mv $COMPONENT-main/* .
 mv static/* .  
 rm -rf ${COMPONENT}-main README.md
-mv localhost.conf /etc/nginx/default.d/roboshop.conf
+#mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
 echo -n "Starting $COMPONENT service : "
