@@ -23,7 +23,7 @@ stat() {
 
 #```bash
 # curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo
-```
+
 
 #1. Install Mongo & Start Service.
 # yum install -y mongodb-org
