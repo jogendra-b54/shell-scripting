@@ -47,10 +47,10 @@ stat $?
 
 echo -n "Extracting ${COMPONENT} component :"
 unzip /tmp/${COMPONENT}.zip  
-#mv $COMPONENT-main/*  .
-#mv static/*  .  
-#rm -rf  ${COMPONENT}-main README.md
-#mv localhost.conf /etc/nginx/default.d/roboshop.conf
+mv $COMPONENT-main/*  .
+mv static/*  .  
+rm -rf  ${COMPONENT}-main README.md
+mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
 # echo -n "Starting $COMPONENT service : "
