@@ -41,6 +41,7 @@ useradd $APPUSER  &>> $LOGFILE
 stat $?
 else
 echo -n "$APPUSER service Account already exist: "
+stat $?
 fi
 
 
@@ -50,7 +51,7 @@ fi
 # $ mv catalogue-main catalogue
 # $ cd /home/roboshop/catalogue
 # $ npm install
-echo -e "\nDownloading the $COMPONENT component : "
+echo -n "Downloading the $COMPONENT component : "
 curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip"
 stat $?
 
