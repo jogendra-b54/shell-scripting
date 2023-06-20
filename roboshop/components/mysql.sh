@@ -25,7 +25,7 @@ stat $?
 #mysql --connect-expired-password -uroot -p${DEFAULT_ROOT_PASSWORD}
 #ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';
 #I want this to be executed only if the default password reset was not done .
-echo "show databases;" | mysql -uroot -RoboShop@1 &>>$LOGFILE
+echo "show databases;" | mysql -uroot -pRoboShop@1 &>>$LOGFILE
 if [ $? -ne 0 ]; then
     echo -n "Performing password reset of MySQL Root user : "
     echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';" | mysql --connect-expired-password -uroot -p${DEFAULT_ROOT_PASSWORD} &>>$LOGFILE
