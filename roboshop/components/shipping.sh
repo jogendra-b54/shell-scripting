@@ -1,8 +1,8 @@
 #!/bin/bash
 
-COMPONENT="catalogue"
+COMPONENT="shipping"
 
 source components/common.sh
 
-NODEJS                           # Calling NodeJS Function
+JAVA                           # Calling NodeJS Function
 
