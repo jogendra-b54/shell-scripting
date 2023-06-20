@@ -37,18 +37,15 @@ mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
 echo -n "Updating the Backend component ReverseProxy details : "
-for component in catalogue; do
+for component in catalogue user ; do
     sed -i -e "/$component/s/localhost/$component.roboshop.internal/" /etc/nginx/default.d/roboshop.conf
 done
 stat $?
 
-
 echo -n "Starting $COMPONENT service : "
-systemctl daemon-reload  &>>$LOGFILE
-systemctl enable nginx    &>>$LOGFILE
-systemctl restart nginx   &>>$LOGFILE
+systemctl daemon-reload &>>$LOGFILE
+systemctl enable nginx &>>$LOGFILE
+systemctl restart nginx &>>$LOGFILE
 stat $?
-
-
 
 echo -e "********************* \e[34m $COMPONENT Installation is completed  \e[0m ********************* : "
