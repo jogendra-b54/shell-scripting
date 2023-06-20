@@ -130,9 +130,9 @@ PYTHON() {
     CREATE_USER
 
     DOWNLOAD_AND_EXTRACT
-    
+
     echo -n "Installing $COMPONENT :"
     cd /home/${APPUSER}/${COMPONENT}/
-    pip3 install -r requirements.txt
+    pip3 install -r requirements.txt      &>>$LOGFILE
     stat $?
 }
