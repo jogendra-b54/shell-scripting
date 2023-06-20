@@ -88,4 +88,6 @@ NODEJS() {
     DOWNLOAD_AND_EXTRACT # calling this function To Download the content
 
     NPM_INSTALL #  Creates Artifacts
+
+    CONFIGURE_SVC  #Configuring the service
 }
