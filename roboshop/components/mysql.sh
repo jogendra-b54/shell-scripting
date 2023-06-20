@@ -4,7 +4,7 @@ COMPONENT="mysql"
 
 source components/common.sh
 
- echo -e "********************* \e[35m $COMPONENT Installation is Started   \e[0m ********************* : "
+echo -e "********************* \e[35m $COMPONENT Installation is Started   \e[0m ********************* : "
 
 echo -n "Configuring the $COMPONENT Repo : "
 curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/stans-robot-project/mysql/main/mysql.repo
@@ -41,24 +41,22 @@ if [ $? -eq 0 ]; then
     echo -n "Uninstalling the validate_password  plugin : "
     echo "UNINSTALL PLUGIN validate_password;" | mysql -uroot -pRoboShop@1 &>>$LOGFILE
     stat $?
-    else
+else
     echo -n "Already the mysql validate_password plugins has been Uninstalled  : "
     stat $?
 fi
 
-
 echo -n "Downloading the $COMPONENT Schema : "
- curl -s -L -o /tmp/mysql.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
+curl -s -L -o /tmp/mysql.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
 stat $?
-
 
 echo -n "Extracting the $COMPONENT Schema : "
 cd /tmp
-unzip -o tmp/${COMPONENT}.zip              &>>$LOGFILE
+unzip -o /tmp/${COMPONENT}.zip &>>$LOGFILE
+
+echo -n "Injecting  the $COMPONENT Schema : "
 cd ${COMPONENT}-main
-mysql -u root -pRoboShop@1 <shipping.sql   &>>$LOGFILE
+mysql -u root -pRoboShop@1 <shipping.sql &>>$LOGFILE
 stat $?
 
-  echo -e "********************* \e[34m $COMPONENT Installation is completed  \e[0m ********************* : "
-
-
+echo -e "********************* \e[34m $COMPONENT Installation is completed  \e[0m ********************* : "
