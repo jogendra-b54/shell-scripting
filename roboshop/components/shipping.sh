@@ -1,3 +1,8 @@
 #!/bin/bash
 
-echo "I am shipping"
+COMPONENT="catalogue"
+
+source components/common.sh
+
+NODEJS                           # Calling NodeJS Function
+

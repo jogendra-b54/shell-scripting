@@ -10,7 +10,7 @@ if [ $ID -ne 0 ]; then
 fi
 
 stat() {
-    if [ $1 -eq 0 ] ; then
+    if [ $1 -eq 0 ]; then
         echo -e "\e[32m success \e[0m"
     else
         echo -e "\e[31m Failure  \e[0m"
@@ -38,8 +38,8 @@ DOWNLOAD_AND_EXTRACT() {
 
     echo -n "Copying the $COMPONENT to $APPUSER home directory : "
     cd /home/${APPUSER}/
-    rm -rf ${COMPONENT}   &>> $LOGFILE
-    unzip -o /tmp/${COMPONENT}.zip  &>> $LOGFILE
+    rm -rf ${COMPONENT} &>>$LOGFILE
+    unzip -o /tmp/${COMPONENT}.zip &>>$LOGFILE
     stat $?
 
     echo -n "Modifying the ownership  : "
@@ -59,8 +59,8 @@ CONFIGURE_SVC() {
     echo -n "Updating the $COMPONENT systemd file   : "
     #sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service
     #sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/'  -e  's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/'  /home/${APPUSER}/${COMPONENT}/systemd.service
-     sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/'  -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/'  -e 's/REDIS_ENDPOINT/redis.roboshop.internal/'  -e  's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/'   /home/${APPUSER}/${COMPONENT}/systemd.service
-    mv /home/${APPUSER}/${COMPONENT}/systemd.service  /etc/systemd/system/${COMPONENT}.service
+    sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service
+    mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
     stat $?
 
     echo -n "Starting the ${COMPONENT} service : "
@@ -90,5 +90,28 @@ NODEJS() {
 
     NPM_INSTALL #  Creates Artifacts
 
-    CONFIGURE_SVC  #Configuring the service
+    CONFIGURE_SVC #Configuring the service
+}
+
+MVN_PACKAGE(){
+    echo -n "Preparing $COMPONENT artifacts  : "
+    cd /home/${APPUSER}/${COMPONENT}
+    mvn clean package                            &>>$LOGFILE
+    mv target/shipping-1.0.jar shipping.jar      &>>$LOGFILE
+    stat $?
+
+}
+
+JAVA() {
+    echo -e "********************* \e[34m $COMPONENT Installation is completed  \e[0m ********************* : "
+
+    echo -n "Installing Maven : "
+
+    yum install maven -y &>>$LOGFILE # ( installs maven with java 8 )
+    stat $?
+    CREATE_USER
+
+    DOWNLOAD_AND_EXTRACT
+
+    MVN_PACKAGE
 }
