@@ -16,7 +16,7 @@ stat $?
 echo -n "Starting the $COMPONENT : "
 systemctl enable mysqld  &>> $LOGFILE
 systemctl start mysqld   &>> $LOGFILE
-stat $?ogi@
+stat $?
 
 
 
