@@ -12,17 +12,18 @@ curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/sc
 stat $?
 
 
-echo -n "Installing the $COMPONENT : "
-yum install rabbitmq-server -y        &>>$LOGFILE
+echo -n "Installing  $COMPONENT : "
+yum install rabbitmq-server -y      &>> $LOGFILE 
+stat $?
 
 echo -n "Starting  the $COMPONENT : "
 systemctl enable rabbitmq-server    &>>$LOGFILE
 systemctl restart rabbitmq-server     &>>$LOGFILE
 stat $?
 
-
+#This needs to run only if the user account doesn't exist
 echo -n "Creating the $COMPONENT $APPUSER : "
-rabbitmq add_user roboshop roboshop123                &>>$LOGFILE
+rabbitmqctl add_user roboshop roboshop123    &>> $LOGFILE
 stat $?
 
 echo -n "Configuring the $COMPONENT $APPUSER previlage : "
