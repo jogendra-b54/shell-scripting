@@ -109,6 +109,7 @@ JAVA() {
 
     yum install maven -y &>>$LOGFILE # ( installs maven with java 8 )
     stat $?
+    
     CREATE_USER
 
     DOWNLOAD_AND_EXTRACT
