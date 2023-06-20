@@ -53,6 +53,7 @@ stat $?
 echo -n "Extracting the $COMPONENT Schema : "
 cd /tmp
 unzip -o /tmp/${COMPONENT}.zip &>>$LOGFILE
+stat $?
 
 echo -n "Injecting  the $COMPONENT Schema : "
 cd ${COMPONENT}-main
