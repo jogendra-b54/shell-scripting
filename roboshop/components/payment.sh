@@ -1,3 +1,7 @@
 #!/bin/bash
 
-echo "I am Payment"
+COMPONENT="payment"
+
+source components/common.sh
+
+PYTHON

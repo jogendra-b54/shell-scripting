@@ -38,8 +38,8 @@ DOWNLOAD_AND_EXTRACT() {
 
     echo -n "Copying the $COMPONENT to $APPUSER home directory : "
     cd /home/${APPUSER}/
-    rm -rf ${COMPONENT} &>> $LOGFILE
-    unzip -o /tmp/${COMPONENT}.zip  &>>$LOGFILE
+    rm -rf ${COMPONENT} &>>$LOGFILE
+    unzip -o /tmp/${COMPONENT}.zip &>>$LOGFILE
     stat $?
 
     echo -n "Modifying the ownership  : "
@@ -93,11 +93,11 @@ NODEJS() {
     CONFIGURE_SVC #Configuring the service
 }
 
-MVN_PACKAGE(){
+MVN_PACKAGE() {
     echo -n "Preparing $COMPONENT artifacts  : "
     cd /home/${APPUSER}/${COMPONENT}
-    mvn clean package                            &>>$LOGFILE
-    mv target/shipping-1.0.jar shipping.jar      &>>$LOGFILE
+    mvn clean package &>>$LOGFILE
+    mv target/shipping-1.0.jar shipping.jar &>>$LOGFILE
     stat $?
 
 }
@@ -107,7 +107,7 @@ JAVA() {
 
     echo -n "Installing Maven : "
 
-    yum install maven -y  &>>$LOGFILE # ( installs maven with java 8 )
+    yum install maven -y &>>$LOGFILE # ( installs maven with java 8 )
     stat $?
 
     CREATE_USER
@@ -117,4 +117,19 @@ JAVA() {
     MVN_PACKAGE
 
     CONFIGURE_SVC
+}
+
+PYTHON() {
+
+    echo -e "*********** \e[35m $COMPONENT Installation has started \e[0m ***********"
+
+    echo -n "Installing Python and its dependencies :"
+    yum install python36 gcc python3-devel -y &>>$LOGFILE
+    stat $?
+
+    DOWNLOAD_AND_EXTRACT
+    echo -n "Installing $COMPONENT :"
+    cd /home/${APPUSER}/${COMPONENT}/
+    pip3 install -r requirements.txt
+    stat $?
 }
