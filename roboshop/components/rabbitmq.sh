@@ -35,3 +35,6 @@ echo -n "Configuring the $COMPONENT $APPUSER previlage : "
 rabbitmqctl set_user_tags roboshop administrator &>>$LOGFILE
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$LOGFILE
 stat $?
+
+
+   echo -e "********************* \e[34m $COMPONENT Installation is completed  \e[0m ********************* : "

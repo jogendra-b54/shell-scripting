@@ -103,7 +103,7 @@ MVN_PACKAGE(){
 }
 
 JAVA() {
-    echo -e "********************* \e[34m $COMPONENT Installation is completed  \e[0m ********************* : "
+    echo -e "********************* \e[34m $COMPONENT Installation has started   \e[0m ********************* : "
 
     echo -n "Installing Maven : "
 
