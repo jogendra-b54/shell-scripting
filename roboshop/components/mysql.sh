@@ -54,9 +54,9 @@ stat $?
 
 echo -n "Extracting the $COMPONENT Schema : "
 cd /tmp
-unzip -o tmp/${COMPONENT}.zip
+unzip -o tmp/${COMPONENT}.zip              &>>$LOGFILE
 cd ${COMPONENT}-main
-mysql -u root -pRoboShop@1 <shipping.sql
+mysql -u root -pRoboShop@1 <shipping.sql   &>>$LOGFILE
 stat $?
 
   echo -e "********************* \e[34m $COMPONENT Installation is completed  \e[0m ********************* : "
