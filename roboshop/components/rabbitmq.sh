@@ -7,8 +7,8 @@ source components/common.sh
 echo -e "********************* \e[35m $COMPONENT Installation is Started   \e[0m ********************* : "
 
 echo -n "Configuring the ${COMPONENT} repo : "
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
+curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash           &>>$LOGFILE
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash  &>>$LOGFILE
 stat $?
 
 
