@@ -56,12 +56,19 @@ NPM_INSTALL() {
 }
 
 CONFIGURE_SVC() {
+    
     echo -n "Updating the $COMPONENT systemd file   : "
     #sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service
     #sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/'  -e  's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/'  /home/${APPUSER}/${COMPONENT}/systemd.service
-    sed -i -e 's/DBHOST/mysql.roboshop.internal/' -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service
+    sed -i -e 's/CARTHOST/cart.roboshop.internal/' -e  's/USERHOST/user.roboshop.internal/' -e 's/AMQPHOST/rabbitmq.roboshop.internal/' -e 's/DBHOST/mysql.roboshop.internal/' -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service
     mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
     stat $?
+#     Update `CARTHOST` with cart server ip
+
+# Update `USERHOST` with user server ip 
+
+# Update `AMQPHOST` with RabbitMQ server ip.
+
 
     echo -n "Starting the ${COMPONENT} service : "
     systemctl daemon-reload &>>$LOGFILE
@@ -135,4 +142,13 @@ PYTHON() {
     cd /home/${APPUSER}/${COMPONENT}/
     pip3 install -r requirements.txt      &>>$LOGFILE
     stat $?
+
+    USERID=$(id -u roboshop)
+    GROUPID=$(id -g roboshop)
+
+    echo -n "Updating the uid and gid in the $COMPONENT.ini file "
+    sed -i -e "/^uid/ c uid=${USERID}" -e  "/^gid/ c gid=${GROUPID}"  /home/${APPUSER}/${COMPONENT}.ini
+    stat $?
+
+
 }
