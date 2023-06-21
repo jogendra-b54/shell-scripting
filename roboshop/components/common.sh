@@ -71,9 +71,9 @@ CONFIGURE_SVC() {
 
 
     echo -n "Starting the ${COMPONENT} service : "
-    systemctl daemon-reload &>>$LOGFILE
-    systemctl enable $COMPONENT &>>$LOGFILE
-    systemctl restart $COMPONENT &>>$LOGFILE
+    systemctl daemon-reload        &>>$LOGFILE
+    systemctl enable $COMPONENT     &>>$LOGFILE
+    systemctl restart $COMPONENT    &>>$LOGFILE
     stat $?
 
     echo -e "********************* \e[34m $COMPONENT Installation is completed  \e[0m ********************* : "
@@ -150,5 +150,5 @@ PYTHON() {
     sed -i -e "/^uid/ c uid=${USERID}" -e  "/^gid/ c gid=${GROUPID}"  /home/${APPUSER}/${COMPONENT}.ini
     stat $?
 
-
+    CONFIGURE_SVC
 }
