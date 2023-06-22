@@ -8,7 +8,7 @@ COMPONENT=$1
 
 if [ -z "$1" ] ; then
     echo -e "\e[31m COMPONENT NAME IS REQUIRED TO SUPPLY \e[0m "
-    echo -e "\e[35m Ex Usage : bash create-ec2 componentName \e[0m "
+    echo -e "\e[35m Ex Usage : \n \t  \t bash create-ec2 componentName \e[0m "
     exit 1
 fi
 
