@@ -22,7 +22,4 @@ echo -e " ***********Lanuching the Server ********** "
  #aws ec2 run-instances   --image-id ${AMI_ID}   --instance-type t3.micro | jq .
 
  #--tag-specifications 'ResourceType=instance,Tags=[{Key=webserver,Value=production}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]'
- aws ec2 run-instances  \
-         --image-id ${AMI_ID}  \
-         --instance-type t3.micro | jq .  \
-         tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=payment}]' | jq .
+ aws ec2 run-instances  --image-id ${AMI_ID} --instance-type t3.micro | tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=payment}]' | jq .
