@@ -6,6 +6,14 @@
 
 AMI_ID=$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-CentOS7" | jq '.Images[].ImageId' | sed -e 's/"//g')
 
-#echo -e "AMI ID used to launch the EC2 is \e[32m $AMI_ID \e[0m \033[5mYOUR_STRING\033[0m"
+#echo -e "AMI ID used to launch the EC2 is \e[32m $AMI_ID \e[0m \033[5mYOUR_STRING\033[0m" ) for bold Italic blink
 
 echo -e "AMI ID used to launch the EC2 is \e[32m $AMI_ID \e[0m"
+
+# aws ec2 run-instances \
+#     --image-id ami-0abcdef1234567890 \
+#     --instance-type t2.micro \
+#     --key-name MyKeyPair
+
+echo -e ""***********Lanuching the Server **********"
+ aws ec2 run-instances   --image-id ${AMI_ID} --instance-type t2.micro  
