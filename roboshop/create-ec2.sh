@@ -19,5 +19,10 @@ echo -e "Security Group  ID used to launch the EC2 is \e[32m $SG_ID \e[0m"
 
 
 echo -e " ***********Lanuching the Server ********** "
- aws ec2 run-instances   --image-id ${AMI_ID} --instance-type t2.micro  
- 
+ #aws ec2 run-instances   --image-id ${AMI_ID}   --instance-type t3.micro | jq .
+
+ #--tag-specifications 'ResourceType=instance,Tags=[{Key=webserver,Value=production}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]'
+ aws ec2 run-instances  \
+         --image-id ${AMI_ID}  \
+         --instance-type t3.micro | jq .  \
+         tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=payment}]' | jq .
