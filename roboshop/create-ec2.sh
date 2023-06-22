@@ -20,7 +20,7 @@ echo -e "Security Group  ID used to launch the EC2 is \e[32m $SG_ID \e[0m"
 # aws ec2 describe-security-groups --filters "Name=group-name,Values=b54-allow-all" | jq '.SecurityGroups[].GroupId' | sed -e 's/"//g'
 
 
-echo -e " ***********Lanuching the Server ********** "
+echo -e " \e[36m***********Lanuching the Server ********** \e[0m"
  #aws ec2 run-instances   --image-id ${AMI_ID}   --instance-type t3.micro | jq .
 
  #--tag-specifications 'ResourceType=instance,Tags=[{Key=webserver,Value=production}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]'
@@ -28,5 +28,9 @@ echo -e " ***********Lanuching the Server ********** "
 
  #aws ec2 run-instances  --image-id ${AMI_ID} --instance-type t3.micro --security-group-ids $SG_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$COMPONENT}]" | jq .
 
- aws ec2 run-instances  --image-id ${AMI_ID} --instance-type t3.micro --security-group-ids $SG_ID \
+ #aws ec2 run-instances  --image-id ${AMI_ID} --instance-type t3.micro --security-group-ids $SG_ID \
     --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$COMPONENT}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g'
+IPADDRESS=$(aws ec2 run-instances  --image-id ${AMI_ID} --instance-type t3.micro --security-group-ids $SG_ID \
+    --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$COMPONENT}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
+
+    echo -e "private  IP  Address of $COMPONENT  is \e[35m $IPADDRESS \e[0m"
