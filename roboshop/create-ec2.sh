@@ -18,6 +18,6 @@ echo -e "Security Group  ID used to launch the EC2 is \e[32m $SG_ID \e[0m"
 # aws ec2 describe-security-groups --filters "Name=group-name,Values=b54-allow-all" | jq '.SecurityGroups[].GroupId' | sed -e 's/"//g'
 
 
-echo -e ""***********Lanuching the Server **********"
+echo -e " ***********Lanuching the Server ********** "
  aws ec2 run-instances   --image-id ${AMI_ID} --instance-type t2.micro  
  
