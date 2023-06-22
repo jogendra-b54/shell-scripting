@@ -29,7 +29,7 @@ echo -e " \e[36m***********Lanuching the Server ********** \e[0m"
  #aws ec2 run-instances  --image-id ${AMI_ID} --instance-type t3.micro --security-group-ids $SG_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$COMPONENT}]" | jq .
 
  #aws ec2 run-instances  --image-id ${AMI_ID} --instance-type t3.micro --security-group-ids $SG_ID \
-    --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$COMPONENT}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g'
+   # --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$COMPONENT}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g'
 IPADDRESS=$(aws ec2 run-instances  --image-id ${AMI_ID} --instance-type t3.micro --security-group-ids $SG_ID \
     --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$COMPONENT}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
 
