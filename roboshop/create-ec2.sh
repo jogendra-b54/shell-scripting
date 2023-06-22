@@ -43,4 +43,5 @@ echo -e "private  IP  Address of $COMPONENT  is \e[35m $IPADDRESS \e[0m"
 
 echo -e "\e[36m *****Creating DNS record for the $COMPONENT  : ******** \e[0m "
 sed -e "s/COMPONENT/${COMPONENT}/" -e "s/IPADDRESS/${IPADDRESS}/" route53.json > /tmp/record.json
-aws route53 change-resource-record-sets  --hosted-zone-id $HOSTEDZONEID  --change-batch file://tmp/route53.json
+aws route53 change-resource-record-sets  --hosted-zone-id $HOSTEDZONEID  --change-batch file:///tmp/record.json
+                                                                                        
