@@ -4,10 +4,10 @@
 
 COMPONENT=$1
 HOSTEDZONEID="Z08104102TDJJFARM8HPK"
-ENV=$2
+#ENV=$2
 #HOSTEDZONEID="Z08104102TDJJFARM8HPK""
 
-if [ -z "$1" ] || [ -z "$2" ] ; then
+if [ -z "$1" ]; then
     echo -e "\e[31m COMPONENT NAME IS NEEDED \e[0m"
     echo -e "\e[35m Ex Usage : \n \t \t bash create-ec2 componentName envName \e[0m "
     exit 1
