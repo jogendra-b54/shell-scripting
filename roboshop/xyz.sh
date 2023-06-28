@@ -4,7 +4,7 @@
 
 COMPONENT=$1
 HOSTEDZONEID="Z08104102TDJJFARM8HPK"
-#ENV=$2
+ENV=$2
 #HOSTEDZONEID="Z08104102TDJJFARM8HPK""
 
 if [ -z "$1" ]; then
@@ -23,14 +23,14 @@ create_ec2() {
 
     echo -e "\e[36m *** Launching the server **** \e[0m"
 
-    IPADDRESS=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type t3.micro --security-group-ids $SG_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$COMPONENT}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
+    IPADDRESS=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type t3.micro --security-group-ids $SG_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$COMPONENT-$ENV}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
 
-    echo -e "\e[36m *** Launching the $COMPONENT server is completed **** \e[0m"
+    echo -e "\e[36m *** Launching the $COMPONENT-$ENV server is completed **** \e[0m"
 
     echo -e "private IP Address of $COMPONENT is \e[35m $IPADDRESS \e[0m"
 
     echo -e "\e[36m ***** Creating DNS record for the $COMPONENT : ****** \e[0m "
-    sed -e "s/COMPONENT/${COMPONENT}/" -e "s/IPADDRESS/${IPADDRESS}/" route53.json >/tmp/record.json
+    sed -e "s/COMPONENT/${COMPONENT}-${ENV}/" -e "s/IPADDRESS/${IPADDRESS}/" route53.json >/tmp/record.json
     aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONEID --change-batch file:///tmp/record.json
 
     echo -e "\e[36m ***** Creating DNS record for the $COMPONENT has completed : ****** \e[0m "
