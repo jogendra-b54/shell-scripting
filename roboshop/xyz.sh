@@ -23,7 +23,7 @@ echo -e "security group ID used to launch the EC2 is \e[35m $SG_ID \e[0m "
 echo -e "\e[36m *** Launching the server **** \e[0m"
 
 
-IPADDRESS=$(aws ec2 run-instances  --image-id ${AMI_ID}  --instance-type t3.micro   --security-group-ids $SG_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$COMPONENT-$ENV}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
+IPADDRESS=$(aws ec2 run-instances  --image-id ${AMI_ID}  --instance-type t3.micro   --security-group-ids $SG_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$COMPONENT}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
 
 echo -e "\e[36m *** Launching the $COMPONENT server is completed **** \e[0m"
 
